@@ -237,18 +237,66 @@ input[type="range"] {
 }
 
 @media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  .screen-only {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
   header,
   input,
   button {
     display: none !important;
   }
 
+  html,
   body {
     background: white;
     color: #111;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  [data-reveal="true"] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .print-document a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #333;
+    word-break: break-all;
+  }
+
+  .print-page-break {
+    break-before: page;
+  }
+
+  #laboratuvar {
+    display: none !important;
   }
 
   section {
     break-inside: avoid;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
   }
 }

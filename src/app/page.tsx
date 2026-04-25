@@ -3,6 +3,7 @@ import { FormulaCard } from "@/components/formula-card";
 import { Hero } from "@/components/hero";
 import { InteractiveLab } from "@/components/interactive-lab";
 import { MathBlock, MathInline } from "@/components/math-render";
+import { PrintControls } from "@/components/print-controls";
 import { ReadingProgress } from "@/components/reading-progress";
 import { Reveal } from "@/components/reveal";
 import { SiteNavigation } from "@/components/site-navigation";
@@ -167,11 +168,54 @@ function SourceList() {
 }
 
 export default function Home() {
+  const printPreparedAt = new Intl.DateTimeFormat("tr-TR", {
+    dateStyle: "long",
+  }).format(new Date());
+
   return (
     <>
       <ReadingProgress />
       <SiteNavigation />
-      <main id="icerik">
+      <PrintControls />
+
+      <main id="icerik" className="print-document">
+        <section className="print-only px-4 pb-8 pt-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-5xl rounded-[8px] border border-[color:var(--line)] bg-white p-6 text-black">
+            <p className="text-xs font-semibold uppercase tracking-wide text-black/75">
+              Matematik Projesi · Fiziksel Teslim Baskı Sayfası
+            </p>
+            <h1 className="mt-3 font-display text-4xl leading-tight">
+              Euler Sayısı (e): Matematiğin Doğal Sabiti
+            </h1>
+            <div className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
+              <p>
+                <strong>Öğrenci:</strong> Bekir Ozan Demir
+              </p>
+              <p>
+                <strong>Okul:</strong> TED Konya Koleji
+              </p>
+              <p>
+                <strong>Ders:</strong> Matematik
+              </p>
+              <p>
+                <strong>Baskı hazırlık tarihi:</strong> {printPreparedAt}
+              </p>
+              <p>
+                <strong>Sınıf / Şube:</strong> ____________________
+              </p>
+              <p>
+                <strong>Öğretmen:</strong> ____________________
+              </p>
+            </div>
+            <div className="mt-6 border-t border-black/20 pt-4 text-sm leading-6">
+              <p>
+                Bu sürüm kırtasiyede A4 çıktıya uygun olacak şekilde
+                düzenlenmiştir. Renkli veya siyah-beyaz baskı alınabilir.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <Hero />
 
         <PageSection id="e-nedir">
@@ -284,6 +328,8 @@ export default function Home() {
           />
           <InteractiveLab />
         </PageSection>
+
+        <div className="print-page-break" aria-hidden="true" />
 
         <PageSection id="ileri-seviye">
           <SectionIntro

@@ -22,6 +22,7 @@ export function Reveal({
 
   return (
     <Component
+      data-reveal="true"
       initial={reduceMotion ? false : { opacity: 0, y: 18 }}
       whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
